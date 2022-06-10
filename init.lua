@@ -1,5 +1,4 @@
 local config = {
-
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
@@ -18,12 +17,14 @@ local config = {
   },
 
   -- Set colorscheme
-  colorscheme = "default_theme",
-
+  colorscheme = "catppuccin",
+  
   -- set vim options here (vim.<first_key>.<second_key> =  value)
   options = {
     opt = {
       relativenumber = true, -- sets vim.opt.relativenumber
+      tabstop = 3,
+      shiftwidth = 3,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -75,9 +76,10 @@ local config = {
   plugins = {
     -- Add plugins, the packer syntax without the "use"
     init = {
+      "catppuccin/nvim",
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
-
+      
       -- You can also add new plugins here as well:
       -- { "andweeb/presence.nvim" },
       -- {
