@@ -25,6 +25,7 @@ local config = {
       relativenumber = true, -- sets vim.opt.relativenumber
       tabstop = 3,
       shiftwidth = 3,
+      scrolloff=1,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -116,7 +117,7 @@ local config = {
       return config -- return final config table
     end,
     treesitter = {
-      ensure_installed = { "lua" },
+      ensure_installed = { "lua", "java", "javascript", "html", "json" },
     },
     ["nvim-lsp-installer"] = {
       ensure_installed = { "sumneko_lua" },
