@@ -1,4 +1,5 @@
 local config = {
+
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
@@ -18,14 +19,14 @@ local config = {
 
   -- Set colorscheme
   colorscheme = "catppuccin",
-  
+
   -- set vim options here (vim.<first_key>.<second_key> =  value)
   options = {
     opt = {
       relativenumber = true,
       tabstop = 3,
       shiftwidth = 3,
-      scrolloff=1,
+      scrolloff = 1,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -80,7 +81,7 @@ local config = {
       "catppuccin/nvim",
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
-      
+
       -- You can also add new plugins here as well:
       -- { "andweeb/presence.nvim" },
       -- {
@@ -117,11 +118,7 @@ local config = {
       return config -- return final config table
     end,
     treesitter = {
-<<<<<<< HEAD
-      ensure_installed = { "java", "lua", "go", "javascript", "html", "http", "json", "python" },
-=======
-      ensure_installed = { "lua", "java", "javascript", "html", "json" },
->>>>>>> 4dd4f67f792545aeff3035f91d1f7fe3055a8929
+      ensure_installed = { "lua" },
     },
     ["nvim-lsp-installer"] = {
       ensure_installed = { "sumneko_lua" },
