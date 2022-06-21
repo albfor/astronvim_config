@@ -1,4 +1,5 @@
 local config = {
+
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
@@ -13,15 +14,15 @@ local config = {
 
   -- Set colorscheme
   colorscheme = "catppuccin",
-  
+
   -- set vim options here (vim.<first_key>.<second_key> =  value)
   options = {
     opt = {
-      relativenumber = true, -- sets vim.opt.relativenumber
+      relativenumber = true,
       tabstop = 3,
       expandtab = false,
       shiftwidth = 3,
-      scrolloff=1,
+      scrolloff = 1,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -40,20 +41,11 @@ local config = {
     init = {
       "prettier/vim-prettier",
       "catppuccin/nvim",
-      "folke/tokyonight.nvim",
-      "savq/melange"
     },
     -- All other entries override the setup() call for default plugins
     ["null-ls"] = function(config)
       local null_ls = require "null-ls"
-      -- Check supported formatters and linters
-      -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-      -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       config.sources = {
-        -- Set a formatter
-        -- null_ls.builtins.formatting.eslint,
-        -- Set a linter
-        -- null_ls.builtins.diagnostics.eslint,
       }
       -- set up null-ls's on_attach function
       config.on_attach = function(client)
@@ -69,7 +61,7 @@ local config = {
       return config -- return final config table
     end,
     treesitter = {
-      ensure_installed = { "lua", "java", "javascript", "html", "json" },
+      ensure_installed = { "lua" },
     },
     ["nvim-lsp-installer"] = {
       ensure_installed = { "sumneko_lua" },
