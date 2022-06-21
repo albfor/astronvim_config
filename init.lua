@@ -9,11 +9,6 @@ local config = {
     pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
     skip_prompts = false, -- skip prompts about breaking changes
     show_changelog = true, -- show the changelog after performing an update
-    -- remotes = { -- easily add new remotes to track
-    --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
-    --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
-    --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
-    -- },
   },
 
   -- Set colorscheme
@@ -24,46 +19,12 @@ local config = {
     opt = {
       relativenumber = true, -- sets vim.opt.relativenumber
       tabstop = 3,
+      expandtab = false,
       shiftwidth = 3,
       scrolloff=1,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
-    },
-  },
-
-  -- Default theme configuration
-  default_theme = {
-    diagnostics_style = { italic = true },
-    -- Modify the color table
-    colors = {
-      fg = "#abb2bf",
-    },
-    -- Modify the highlight groups
-    highlights = function(highlights)
-      local C = require "default_theme.colors"
-
-      highlights.Normal = { fg = C.fg, bg = C.bg }
-      return highlights
-    end,
-    plugins = { -- enable or disable extra plugin highlighting
-      aerial = true,
-      beacon = false,
-      bufferline = true,
-      dashboard = true,
-      highlighturl = true,
-      hop = false,
-      indent_blankline = true,
-      lightspeed = false,
-      ["neo-tree"] = true,
-      notify = true,
-      ["nvim-tree"] = false,
-      ["nvim-web-devicons"] = true,
-      rainbow = true,
-      symbols_outline = false,
-      telescope = true,
-      vimwiki = false,
-      ["which-key"] = true,
     },
   },
 
@@ -77,19 +38,10 @@ local config = {
   plugins = {
     -- Add plugins, the packer syntax without the "use"
     init = {
+      "prettier/vim-prettier",
       "catppuccin/nvim",
-      -- You can disable default plugins as follows:
-      -- ["goolord/alpha-nvim"] = { disable = true },
-      
-      -- You can also add new plugins here as well:
-      -- { "andweeb/presence.nvim" },
-      -- {
-      --   "ray-x/lsp_signature.nvim",
-      --   event = "BufRead",
-      --   config = function()
-      --     require("lsp_signature").setup()
-      --   end,
-      -- },
+      "folke/tokyonight.nvim",
+      "savq/melange"
     },
     -- All other entries override the setup() call for default plugins
     ["null-ls"] = function(config)
@@ -99,9 +51,9 @@ local config = {
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       config.sources = {
         -- Set a formatter
-        null_ls.builtins.formatting.rufo,
+        -- null_ls.builtins.formatting.eslint,
         -- Set a linter
-        null_ls.builtins.diagnostics.rubocop,
+        -- null_ls.builtins.diagnostics.eslint,
       }
       -- set up null-ls's on_attach function
       config.on_attach = function(client)
@@ -110,7 +62,7 @@ local config = {
           vim.api.nvim_create_autocmd("BufWritePre", {
             desc = "Auto format before save",
             pattern = "<buffer>",
-            callback = vim.lsp.buf.formatting_sync,
+            callback = vim.lsp.buf.formatting_sync(nil, 2000),
           })
         end
       end
@@ -210,6 +162,7 @@ local config = {
   polish = function()
     -- Set key bindings
     vim.keymap.set("n", "<C-s>", ":w!<CR>")
+    vim.keymap.set("n", "<leader>lf", "<cmd>Prettier<cr>")
 
     -- Set autocommands
     vim.api.nvim_create_augroup("packer_conf", { clear = true })
